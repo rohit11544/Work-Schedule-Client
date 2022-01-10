@@ -1,12 +1,13 @@
 import React from "react";
 import "./style.css";
 import { Link } from "react-router-dom";
-import { deleteWork } from "../../actions/work";
+import { deleteWork, getWork } from "../../actions/work";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Home() {
-  const works = useSelector((state) => state.work);
   const dispatch = useDispatch();
+  dispatch(getWork());
+  const works = useSelector((state) => state.work);
 
   return (
     <>
