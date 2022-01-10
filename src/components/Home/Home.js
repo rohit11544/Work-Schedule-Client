@@ -1,17 +1,11 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import "./style.css";
 import { Link } from "react-router-dom";
 import { deleteWork } from "../../actions/work";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Home() {
-  const [works, setWorks] = useState([]);
-  useEffect(() => {
-    axios.get("/work").then((res) => {
-      setWorks(res.data);
-    });
-  });
+  const works = useSelector((state) => state.work);
   const dispatch = useDispatch();
 
   return (
@@ -46,9 +40,11 @@ export default function Home() {
                         <h6 className="card-subtitle mb-2 text-muted">
                           {work.deadLine}
                         </h6>
-                        <Link to={{
-                          pathname: `/UpdateForm?${work._id}`,
-                        }}>
+                        <Link
+                          to={{
+                            pathname: `/UpdateForm?${work._id}`,
+                          }}
+                        >
                           <button class="btn btn-primary">Update</button>
                         </Link>
                         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -71,6 +67,9 @@ export default function Home() {
               <button class="btn btn-success">Add Schedule</button>
             </Link>
           </center>
+          <br />
+          <br />
+          <br />
         </section>
       )}
     </>

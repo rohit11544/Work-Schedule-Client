@@ -1,7 +1,6 @@
-import {combineReducers} from "redux";
-import work from "./work";
+import { combineReducers } from "redux";
+import workReducer from "./work";
 
-export default combineReducers ({
-    work
-    
+export default combineReducers({
+  work: workReducer,
 });
